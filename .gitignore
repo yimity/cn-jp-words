@@ -40,3 +40,9 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Cloudlare
+.wrangler
+.wrangler/*
+.wrangler/tmp/*
+.wrangler/state/*
