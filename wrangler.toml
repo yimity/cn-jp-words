@@ -1,4 +1,0 @@
-[[d1_databases]]
-binding = "DB_jinger" # available in your Worker on env.DB
-database_name = "jinger"
-database_id = "00995f51-0ebf-42fb-8acc-0d80dc3c8e22"
