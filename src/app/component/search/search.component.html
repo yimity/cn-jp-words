@@ -8,15 +8,15 @@
     </ng-template>
   </div>
   <div class="max-w-3xl mx-auto min-w-lg overflow-auto">
-    <!--<nz-table #wordsTable [nzData]="words" nzLoading="{{loading}}" nzShowTotal="{{true}}">
+    <nz-table #wordsTable [nzData]="words" [nzLoading]="loading" [nzHideOnSinglePage]>
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Age</th>
-          <th>Address</th>
-          <th>Action</th>
-          <th>Action</th>
-          <th>Action</th>
+          <th>日语</th>
+          <th>读音</th>
+          <th>词意</th>
+          <th>中文</th>
+          <th>词意</th>
+          <th>操作</th>
         </tr>
       </thead>
       <tbody>
@@ -33,6 +33,7 @@
           </td>
         </tr>
       </tbody>
-    </nz-table>-->
+    </nz-table>
   </div>
+
 </div>

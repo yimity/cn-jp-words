@@ -3,7 +3,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
-import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
+import { NgForOf } from '@angular/common';
 import { SearchService, Word } from '../../service/search/search.service';
 
 @Component({
@@ -15,8 +15,6 @@ import { SearchService, Word } from '../../service/search/search.service';
     NzTableModule,
     NzDividerModule,
     NgForOf,
-    AsyncPipe,
-    NgIf,
   ],
   templateUrl: './search.component.html',
   styleUrl: './search.component.scss',
