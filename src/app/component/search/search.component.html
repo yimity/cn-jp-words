@@ -1,0 +1,38 @@
+<div class="inner-content mt-10">
+  <div class="max-w-lg mx-auto mb-4">
+    <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
+      <input type="text" nz-input placeholder="请输入日语单词" />
+    </nz-input-group>
+    <ng-template #suffixButton>
+      <button nz-button nzType="primary" nzSize="large" nzSearch (click)="search()">搜索</button>
+    </ng-template>
+  </div>
+  <div class="max-w-3xl mx-auto min-w-lg overflow-auto">
+    <!--<nz-table #wordsTable [nzData]="words" nzLoading="{{loading}}" nzShowTotal="{{true}}">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Address</th>
+          <th>Action</th>
+          <th>Action</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of wordsTable.data">
+          <td>{{ data.japanese }}</td>
+          <td>{{ data.hiragana }}</td>
+          <td>{{ data.meanOfChinese }}</td>
+          <td>{{ data.chinese }}</td>
+          <td>{{ data.chineseMeaning }}</td>
+          <td>
+            <a>Action 一 {{ data.japanese }}</a>
+            <nz-divider nzType="vertical"></nz-divider>
+            <a>Delete</a>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>-->
+  </div>
+</div>
