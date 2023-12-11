@@ -3,7 +3,7 @@ export interface Env {
 }
 
 export async function onRequest(context: any) {
-  let env = context.env as Env;
+  const env = context.env as Env;
   const { results } = await env.DB_jinger.prepare(
     "SELECT * FROM dictionary"
   ).all();

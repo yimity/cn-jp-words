@@ -19,7 +19,7 @@ export class SearchService {
   }
 
   searchWord(keyword: string) {
-    return this.http.get<Word[]>('https://cn-jp-words.pages.dev/fetch/search?keyword=' + keyword);
+    return this.http.get<Word[]>('https://cn-jp-words.pages.dev/api/search?keyword=' + keyword);
     // return this.http.get<Word[]>('/api/search?keyword=' + keyword);
   }
 }

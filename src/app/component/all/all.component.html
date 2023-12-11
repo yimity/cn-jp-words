@@ -1,24 +1,4 @@
 <div class="inner-content mt-10">
-  <div class="max-w-lg mx-auto mb-4">
-    <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
-      <input
-        type="text"
-        [(ngModel)]="keyword"
-        nz-input
-        placeholder="请输入日语单词" />
-    </nz-input-group>
-    <ng-template #suffixButton>
-      <button
-        nz-button
-        nzType="primary"
-        nzSize="large"
-        nzSearch
-        (click)="search()">
-        搜索
-      </button>
-      <a routerLink="/all" nz-button nzSize="small" nzType="link">全部列表</a>
-    </ng-template>
-  </div>
   <div class="max-w-3xl mx-auto min-w-lg overflow-auto">
     <nz-table
       #wordsTable

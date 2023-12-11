@@ -5,6 +5,9 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NgForOf } from '@angular/common';
 import { SearchService, Word } from '../../service/search/search.service';
+import {NzMessageService} from "ng-zorro-antd/message";
+import {FormsModule} from "@angular/forms";
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-search',
@@ -15,6 +18,8 @@ import { SearchService, Word } from '../../service/search/search.service';
     NzTableModule,
     NzDividerModule,
     NgForOf,
+    FormsModule,
+    RouterLink,
   ],
   templateUrl: './search.component.html',
   styleUrl: './search.component.scss',
@@ -25,9 +30,17 @@ export class SearchComponent {
 
   words: Word[] = [];
 
-  constructor(private searchService: SearchService) {}
+  constructor(private searchService: SearchService, private message: NzMessageService) {}
 
   search(): void {
+    if(!this.keyword){
+      this.message.create('error', `Keyword can't be empty!`);
+      // keyword.focus();
+      return;
+    }
+    if(this.loading){
+      return;
+    }
     this.loading = true;
     this.searchService.searchWord(this.keyword).subscribe(result => {
       this.words = result;
