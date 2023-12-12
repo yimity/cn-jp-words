@@ -1,11 +1,5 @@
-export interface Env {
-  DB_jinger: any;
-}
+import { words } from "./words";
 
 export async function onRequest(context: any) {
-  const env = context.env as Env;
-  const { results } = await env.DB_jinger.prepare(
-    "SELECT * FROM dictionary"
-  ).all();
-	return Response.json(results);
+	return Response.json(words);
 }

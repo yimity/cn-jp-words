@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { read, utils, writeFile, writeFileXLSX } from 'xlsx';
-import { Word } from '../../service/search/search.service';
+import { RowKey, Word, WordType } from '../../service/search/search.service';
 import { NgForOf } from '@angular/common';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzTableModule } from 'ng-zorro-antd/table';
@@ -9,17 +9,18 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
+const WordTypeMap = {
+  词义扩大: 1 as WordType,
+  词义缩小: 2 as WordType,
+  词义转移: 3 as WordType,
+};
+
+type WordTypeKey = keyof typeof WordTypeMap;
+
 @Component({
   selector: 'app-excel',
   standalone: true,
-  imports: [
-    NgForOf,
-    NzDividerModule,
-    NzTableModule,
-    NzUploadModule,
-    NzButtonModule,
-    NzIconModule,
-  ],
+  imports: [NgForOf, NzDividerModule, NzTableModule, NzUploadModule, NzButtonModule, NzIconModule],
   templateUrl: './excel.component.html',
   styleUrl: './excel.component.scss',
 })
@@ -29,22 +30,40 @@ export class ExcelComponent {
   constructor(private msg: NzMessageService) {}
 
   handleBeforeUpload = (file: NzUploadFile): boolean => {
-    console.log('handleBeforeUpload: ', file);
     const reader = new FileReader();
-    reader.readAsArrayBuffer(file as any);
-    reader.onload = (e: any) => {
-      console.log('handleBeforeUpload E: ', e);
-      const wb = read(e);
+    reader.onload = (e: ProgressEvent<FileReader>) => {
+      let words: Word[] = [];
+      const result = e?.target?.result;
 
-      /* generate array of objects from first worksheet */
-      const ws = wb.Sheets[wb.SheetNames[0]]; // get the first worksheet
-      const words = utils.sheet_to_json<Word>(ws); // generate objects
+      if (result) {
+        const wb = read(e.target.result);
 
-      /* update data */
-      console.log(words);
+        wb.SheetNames.map(sheetName => {
+          const ws = wb.Sheets[sheetName];
+          const type = WordTypeMap[sheetName as WordTypeKey];
+          const json = utils.sheet_to_json<RowKey>(ws);
+          const wordList = json.map(word => {
+            return {
+              type,
+              japanese: word['日语单词'],
+              hiragana: word['日语读音'],
+              meanOfChinese: word['日语词意'],
+              chinese: word['中文单词'],
+              phonetic: word['中文读音'],
+              chineseMeaning: word['中文词意'],
+            };
+          });
+
+          words = words.concat(wordList);
+        });
+      }
+
+      this.words = words;
+      console.log('json: ', words);
     };
-    return  false;
-  }
+    reader.readAsArrayBuffer(file as any);
+    return false;
+  };
 
   handleFileChange(info: NzUploadChangeParam): void {
     if (info.file.status !== 'uploading') {
@@ -55,26 +74,5 @@ export class ExcelComponent {
     } else if (info.file.status === 'error') {
       this.msg.error(`${info.file.name} file upload failed.`);
     }
-  }
-
-  async load(): Promise<void> {
-    /* Download from https://sheetjs.com/pres.numbers */
-    const f = await fetch('https://sheetjs.com/pres.numbers');
-    const ab = await f.arrayBuffer();
-
-    /* parse workbook */
-    const wb = read(ab);
-
-    /* generate array of objects from first worksheet */
-    const ws = wb.Sheets[wb.SheetNames[0]]; // get the first worksheet
-    const words = utils.sheet_to_json<Word>(ws); // generate objects
-
-    /* update data */
-    console.log(words);
-    this.words = words;
-  }
-
-  ngOnInit(): void {
-    this.load();
   }
 }

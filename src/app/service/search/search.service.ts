@@ -1,6 +1,17 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 
+export type WordType = 1 | 2 | 3;
+
+export interface RowKey {
+  "日语单词": string,
+  "日语读音": string,
+  "日语词意": string,
+  "中文单词": string,
+  "中文读音": string,
+  "中文词意": string
+}
+
 export interface Word {
   japanese: string;
   hiragana: string;
@@ -8,6 +19,7 @@ export interface Word {
   chinese: string;
   phonetic: string;
   chineseMeaning: string;
+  type: WordType;
 }
 
 @Injectable({
