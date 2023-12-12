@@ -1,29 +1,26 @@
 <div class="inner-content mt-10">
-  <div class="max-w-lg mx-auto mb-4">
-    <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
-      <input
-        type="text"
-        [(ngModel)]="keyword"
-        nz-input
-        placeholder="请输入日语单词" />
-    </nz-input-group>
-    <ng-template #suffixButton>
-      <button
-        nz-button
-        nzType="primary"
-        nzSize="large"
-        nzSearch
-        (click)="search()">
-        搜索
-      </button>
-      <!--<a routerLink="/all" nz-button nzSize="small" nzType="link">全部列表</a>-->
-    </ng-template>
+  <div class="max-w-3xl mx-auto min-w-lg">
+    <nz-upload
+      nzType="drag"
+      [nzMultiple]="false"
+      [nzBeforeUpload]="handleBeforeUpload"
+      nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+      (nzChange)="handleFileChange($event)">
+      <p class="ant-upload-drag-icon">
+        <span nz-icon nzType="inbox"></span>
+      </p>
+      <p class="ant-upload-text">Click or drag file to this area to upload</p>
+      <p class="ant-upload-hint">
+        Support for a single or bulk upload. Strictly prohibit from uploading
+        company data or other band files
+      </p>
+    </nz-upload>
   </div>
   <div class="max-w-3xl mx-auto min-w-lg overflow-auto">
     <nz-table
       #wordsTable
       [nzData]="words"
-      [nzLoading]="loading"
+      [nzLoading]="false"
       [nzHideOnSinglePage]
       ngSkipHydration>
       <thead>

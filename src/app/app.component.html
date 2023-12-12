@@ -1,6 +1,10 @@
 <nz-layout class="flex flex-col h-full min-w-[32rem]">
-  <nz-header class="flex items-center">
+  <nz-header class="flex items-center justify-between">
     <div class="logo text-white text-xl">日中差异汉字词汇大全</div>
+    <ul nz-menu nzTheme="dark" nzMode="horizontal">
+      <li nz-menu-item><a routerLink="/all" nz-button nzSize="small" nzType="link">全部列表</a></li>
+      <li nz-menu-item><a routerLink="/excel" nz-button nzSize="small" nzType="link">数据导入</a></li>
+    </ul>
   </nz-header>
   <nz-content class="flex-1">
     <router-outlet></router-outlet>

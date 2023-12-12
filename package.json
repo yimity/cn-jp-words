@@ -3,18 +3,20 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "dev": "ng serve",
     "serve": "ng serve",
-    "start": "npm run pages:build && wrangler pages dev dist/cloudflare --compatibility-date=2023-11-21 --experimental-local",
+    "start": "pnpm run pages:build && wrangler pages dev dist/cloudflare --compatibility-date=2023-11-21 --experimental-local",
     "build": "ng build --configuration production --aot",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:cn-jp-words": "node dist/cn-jp-words/server/server.mjs",
     "process": "node ./tools/copy-files.mjs && node ./tools/alter-polyfills.mjs",
     "pages:build": "ng build && npm run process",
-    "deploy": "npm run pages:build && wrangler pages deploy dist/cloudflare",
+    "deploy": "pnpm run pages:build && wrangler pages deploy dist/cloudflare",
     "lint": "ng lint"
   },
   "private": true,
+  "packageManager": "pnpm@8.12.0",
   "dependencies": {
     "@angular/animations": "^17.0.0",
     "@angular/common": "^17.0.0",
@@ -28,6 +30,7 @@
     "ng-zorro-antd": "^17.0.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.1/xlsx-0.20.1.tgz",
     "zone.js": "~0.14.2"
   },
   "devDependencies": {
