@@ -1,20 +1,20 @@
 <div class="inner-content h-full">
-  <div class="max-w-4xl mx-auto min-w-lg">
+  <div class="max-w-7xl mx-auto min-w-lg">
     <nz-upload nzType="drag" [nzMultiple]="false" [nzBeforeUpload]="handleBeforeUpload" nzAction="" (nzChange)="handleFileChange($event)">
       <p class="ant-upload-text">点击此处或拖动文件到此处</p>
       <p class="ant-upload-hint">请修改模板文件后再进行转换</p>
     </nz-upload>
   </div>
-  <div class="max-w-4xl mx-auto min-w-lg overflow-hidden" style="height: calc(100% - 140px)">
-    <nz-table class="{{tableClass}}" #wordsTable [nzData]="words" [nzLoading]="false" [nzHideOnSinglePage]="false" [nzFooter]="tableFooter" ngSkipHydration [nzScroll]="{ y: '100%'}">
+  <div class="max-w-7xl mx-auto min-w-lg overflow-hidden" style="height: calc(100% - 100px)">
+    <nz-table class="{{ tableClass }}" #wordsTable [nzData]="words" [nzLoading]="false" [nzHideOnSinglePage]="false" [nzFooter]="tableFooter" ngSkipHydration [nzScroll]="{ y: '100%' }">
       <thead>
         <tr>
-          <th>日语</th>
-          <th>读音</th>
+          <th nzWidth="100px">日语</th>
+          <th nzWidth="150px">读音</th>
+          <th nzWidth="150px">词意</th>
+          <th nzWidth="100px">中文</th>
           <th>词意</th>
-          <th>中文</th>
-          <th>词意</th>
-          <th>操作</th>
+          <th nzWidth="100px">操作</th>
         </tr>
       </thead>
       <tbody>

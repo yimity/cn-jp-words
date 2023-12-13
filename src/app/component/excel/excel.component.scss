@@ -20,10 +20,10 @@
 
 
           .ant-table {
-            height: 100%;
+            height: calc(100% - 55px);
 
             .ant-table-container {
-              height: 100%;
+              height: calc(100% - 55px);
 
               .ant-table-body {
                 height: calc(100% - 54px);
