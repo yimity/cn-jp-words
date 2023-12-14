@@ -9,11 +9,12 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { words } from '../../../../functions/api/words';
+import { typeColors } from '../../consts/search';
 
 const WordTypeMap = {
-  词义扩大: 1 as WordType,
-  词义缩小: 2 as WordType,
-  词义转移: 3 as WordType,
+  词义转移: 1 as WordType,
+  词义扩大: 2 as WordType,
+  词义缩小: 3 as WordType,
 };
 
 type WordTypeKey = keyof typeof WordTypeMap;
@@ -26,7 +27,9 @@ type WordTypeKey = keyof typeof WordTypeMap;
   styleUrl: './excel.component.scss',
 })
 export class ExcelComponent {
-  words: Word[] = words;
+  protected readonly typeColors = typeColors;
+
+  words: Word[] = [];
 
   get tableClass(): string {
     return this.words.length !== 0 ? 'full-height-table' : '';
@@ -62,7 +65,6 @@ export class ExcelComponent {
           words = words.concat(wordList);
         });
       }
-
       this.words = words;
     };
     reader.readAsArrayBuffer(file as any);
@@ -78,5 +80,13 @@ export class ExcelComponent {
     } else if (info.file.status === 'error') {
       this.msg.error(`${info.file.name} file upload failed.`);
     }
+  }
+
+  handleDownload(e: MouseEvent): void {
+    const a = document.createElement('a');
+    const file = new Blob([JSON.stringify(this.words, null, 2)], { type: 'text/plain' });
+    a.href = URL.createObjectURL(file);
+    a.download = 'cn_jp_words.json';
+    a.click();
   }
 }

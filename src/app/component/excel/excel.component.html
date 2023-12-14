@@ -14,27 +14,23 @@
           <th nzWidth="150px">词意</th>
           <th nzWidth="100px">中文</th>
           <th>词意</th>
-          <th nzWidth="100px">操作</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let data of wordsTable.data">
-          <td>{{ data.japanese }}</td>
+          <td><span style="color: {{typeColors[data.type]}}">{{ data.japanese }}</span></td>
           <td>{{ data.hiragana }}</td>
           <td>{{ data.meanOfChinese }}</td>
           <td>{{ data.chinese }}</td>
           <td>{{ data.chineseMeaning }}</td>
-          <td>
-            <a>复制</a>
-          </td>
         </tr>
       </tbody>
     </nz-table>
   </div>
   <ng-template #tableFooter>
     <span>请先</span>
-    <a download="cn-jp-words.xlsx" href="assets/cn-jp-words.xlsx" class="text-emerald-500 pl-2">下载模板文件</a>
-    <span>，修改后再转换。</span>
-    <button nz-button nzType="primary" nzSize="small">导出</button>
+    <a download="cn-jp-words.xlsx" href="assets/cn-jp-words.xlsx" class="text-emerald-500 pl-1">下载模板文件</a>
+    <span>，修改后再转换导出。</span>
+    <button nz-button nzType="primary" nzSize="small" (click)="handleDownload($event)">导出</button>
   </ng-template>
 </div>

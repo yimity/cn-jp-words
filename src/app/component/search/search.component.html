@@ -1,6 +1,6 @@
 <div class="inner-content h-full pt-10">
   <div class="max-w-3xl mx-auto mb-4 flex">
-    <nz-select nzSize="large" [(ngModel)]="selectedValue" class="w-28">
+    <nz-select nzSize="large" [(ngModel)]="type" class="w-32">
       <nz-option nzLabel="全部" nzValue="0"></nz-option>
       @for (item of searchTypeList; track item.value) {
         <nz-option nzLabel="{{ item.label }}" nzValue="{{ item.value }}"></nz-option>
@@ -15,7 +15,7 @@
     </ng-template>
   </div>
   <div class="max-w-7xl mx-auto min-w-lg overflow-hidden" style="height: calc(100% - 100px)">
-    <nz-table class="{{ tableClass }}" #wordsTable [nzData]="words" [nzLoading]="loading" [nzHideOnSinglePage] [nzPageSize]="20" ngSkipHydration [nzScroll]="{ y: '100%' }">
+    <nz-table class="{{ tableClass }} table-with-footer" #wordsTable [nzData]="words" [nzLoading]="loading" [nzHideOnSinglePage] [nzPageSize]="20" [nzFooter]="tableFooter" ngSkipHydration [nzScroll]="{ y: '100%' }">
       <thead>
         <tr>
           <th nzWidth="100px">日语</th>
@@ -28,7 +28,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let data of wordsTable.data">
-          <td>{{ data.japanese }}</td>
+          <td><span style="color: {{typeColors[data.type]}}">{{ data.japanese }}</span></td>
           <td>{{ data.hiragana }}</td>
           <td>{{ data.meanOfChinese }}</td>
           <td>{{ data.chinese }}</td>
@@ -40,4 +40,10 @@
       </tbody>
     </nz-table>
   </div>
+  <ng-template #tableFooter>
+    <span>颜色说明：</span>
+    @for (item of searchTypeList; track item.value) {
+      <nz-tag [nzColor]="item.color">{{ item.label }}</nz-tag>
+    }
+  </ng-template>
 </div>

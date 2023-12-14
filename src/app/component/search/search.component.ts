@@ -4,13 +4,14 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NgForOf } from '@angular/common';
-import { SearchService, Word } from '../../service/search/search.service';
+import { SearchService, Word, WordType } from '../../service/search/search.service';
 import {NzMessageService} from "ng-zorro-antd/message";
 import {FormsModule} from "@angular/forms";
 import {RouterLink} from "@angular/router";
 import { NzSelectModule } from 'ng-zorro-antd/select';
-import { searchTypeList } from '../../consts/search';
+import { searchTypeList, typeColors } from '../../consts/search';
 import { words } from '../../../../functions/api/words';
+import { NzTagModule } from 'ng-zorro-antd/tag';
 
 @Component({
   selector: 'app-search',
@@ -24,18 +25,20 @@ import { words } from '../../../../functions/api/words';
     FormsModule,
     RouterLink,
     NzSelectModule,
+    NzTagModule,
   ],
   templateUrl: './search.component.html',
   styleUrl: './search.component.scss',
 })
 export class SearchComponent {
+  protected readonly typeColors = typeColors;
+  protected readonly searchTypeList = searchTypeList;
+
   keyword = '';
   loading = false;
+  type = '0';
 
-  selectedValue = '0';
-  searchTypeList = searchTypeList;
-
-  words: Word[] = words;
+  words: Word[] = [];
 
   get tableClass(): string {
     return this.words.length !== 0 ? 'full-height-table' : '';
@@ -44,17 +47,12 @@ export class SearchComponent {
   constructor(private searchService: SearchService, private message: NzMessageService) {}
 
   search(): void {
-    if(!this.keyword){
-      this.message.create('error', `Keyword can't be empty!`);
-      // keyword.focus();
-      return;
-    }
     if(this.loading){
       return;
     }
     this.loading = true;
-    this.searchService.searchWord(this.keyword).subscribe(result => {
-      this.words = result;
+    this.searchService.searchWord(this.keyword, Number(this.type) as WordType).subscribe(result => {
+      this.words = result.data;
       this.loading = false;
     });
   }

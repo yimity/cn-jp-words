@@ -41,7 +41,7 @@ export class AllComponent {
     }
     this.loading = true;
     this.searchService.searchWord('').subscribe(result => {
-      this.words = result;
+      this.words = result.data;
       this.loading = false;
     });
   }
