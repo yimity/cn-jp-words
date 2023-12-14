@@ -8,7 +8,6 @@ import { NzUploadChangeParam, NzUploadFile, NzUploadModule } from 'ng-zorro-antd
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { NsAutoHeightTableDirective } from '../../directive/ns-auto-height-table.directive';
 import { words } from '../../../../functions/api/words';
 
 const WordTypeMap = {
@@ -22,7 +21,7 @@ type WordTypeKey = keyof typeof WordTypeMap;
 @Component({
   selector: 'app-excel',
   standalone: true,
-  imports: [NgForOf, NzDividerModule, NzTableModule, NzUploadModule, NzButtonModule, NzIconModule, NsAutoHeightTableDirective],
+  imports: [NgForOf, NzDividerModule, NzTableModule, NzUploadModule, NzButtonModule, NzIconModule],
   templateUrl: './excel.component.html',
   styleUrl: './excel.component.scss',
 })
@@ -65,7 +64,6 @@ export class ExcelComponent {
       }
 
       this.words = words;
-      console.log('json: ', words);
     };
     reader.readAsArrayBuffer(file as any);
     return false;

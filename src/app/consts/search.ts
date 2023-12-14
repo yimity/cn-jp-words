@@ -5,7 +5,7 @@ interface SearchItem {
   label: string;
 }
 
-const searchTypeList: SearchItem[] = [
+export const searchTypeList: SearchItem[] = [
   {
     value: 1,
     label: '词义转移',

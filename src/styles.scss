@@ -2,3 +2,65 @@
 @tailwind components;
 @tailwind utilities;
 /* You can add global styles to this file, and also import other style files */
+
+.full-height-table {
+  display: block;
+  height: 100%;
+  position: relative;
+
+  // Table with Footer Height will be 100% - 55px
+  &.table-with-footer {
+    .ant-spin-nested-loading {
+      .ant-spin-container {
+        .ant-table {
+          .ant-table-container {
+            height: calc(100% - 55px);
+          }
+        }
+      }
+    }
+  }
+
+  .ant-spin-nested-loading {
+    position: relative;
+    display: block;
+    height: 100%;
+
+    .ant-spin-container {
+      position: relative;
+      height: 100%;
+
+      .ant-table {
+        height: calc(100% - 55px);
+
+        .ant-table-container {
+          // no Table Footer height will 100%； Or Height will be 100% - 55px  (55px is Table Footer height)
+          height: 100%;
+
+          .ant-table-body {
+            height: calc(100% - 54px);
+            scrollbar-color: rgba(0, 0, 0, 0.06) rgba(0, 0, 0, 0.12);
+            scrollbar-width: thin !important;
+
+            &::-webkit-scrollbar {
+              width: 8px;
+              height: 8px;
+            }
+
+            &::-webkit-scrollbar-track {
+              border-radius: 3px;
+              background: rgba(0, 0, 0, 0.06);
+              box-shadow: inset 0 0 5px #00000014;
+            }
+
+            &::-webkit-scrollbar-thumb {
+              border-radius: 3px;
+              background: rgba(0, 0, 0, 0.12);
+              box-shadow: inset 0 0 10px #0003;
+            }
+          }
+        }
+      }
+    }
+  }
+}

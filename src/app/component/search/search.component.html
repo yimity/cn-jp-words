@@ -1,39 +1,29 @@
-<div class="inner-content mt-10">
-  <div class="max-w-lg mx-auto mb-4">
+<div class="inner-content h-full pt-10">
+  <div class="max-w-3xl mx-auto mb-4 flex">
+    <nz-select nzSize="large" [(ngModel)]="selectedValue" class="w-28">
+      <nz-option nzLabel="全部" nzValue="0"></nz-option>
+      @for (item of searchTypeList; track item.value) {
+        <nz-option nzLabel="{{ item.label }}" nzValue="{{ item.value }}"></nz-option>
+      }
+    </nz-select>
     <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
-      <input
-        type="text"
-        [(ngModel)]="keyword"
-        nz-input
-        placeholder="请输入日语单词" />
+      <input type="text" [(ngModel)]="keyword" nz-input placeholder="请输入日语单词" />
     </nz-input-group>
     <ng-template #suffixButton>
-      <button
-        nz-button
-        nzType="primary"
-        nzSize="large"
-        nzSearch
-        (click)="search()">
-        搜索
-      </button>
+      <button nz-button nzType="primary" nzSize="large" nzSearch (click)="search()">搜索</button>
       <!--<a routerLink="/all" nz-button nzSize="small" nzType="link">全部列表</a>-->
     </ng-template>
   </div>
-  <div class="max-w-3xl mx-auto min-w-lg overflow-auto">
-    <nz-table
-      #wordsTable
-      [nzData]="words"
-      [nzLoading]="loading"
-      [nzHideOnSinglePage]
-      ngSkipHydration>
+  <div class="max-w-7xl mx-auto min-w-lg overflow-hidden" style="height: calc(100% - 100px)">
+    <nz-table class="{{ tableClass }}" #wordsTable [nzData]="words" [nzLoading]="loading" [nzHideOnSinglePage] [nzPageSize]="20" ngSkipHydration [nzScroll]="{ y: '100%' }">
       <thead>
         <tr>
-          <th>日语</th>
-          <th>读音</th>
+          <th nzWidth="100px">日语</th>
+          <th nzWidth="150px">读音</th>
+          <th nzWidth="150px">词意</th>
+          <th nzWidth="100px">中文</th>
           <th>词意</th>
-          <th>中文</th>
-          <th>词意</th>
-          <th>操作</th>
+          <th nzWidth="100px">操作</th>
         </tr>
       </thead>
       <tbody>
@@ -45,8 +35,6 @@
           <td>{{ data.chineseMeaning }}</td>
           <td>
             <a>复制</a>
-            <nz-divider nzType="vertical"></nz-divider>
-            <a>Delete</a>
           </td>
         </tr>
       </tbody>

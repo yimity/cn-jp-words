@@ -6,7 +6,7 @@
     </nz-upload>
   </div>
   <div class="max-w-7xl mx-auto min-w-lg overflow-hidden" style="height: calc(100% - 100px)">
-    <nz-table class="{{ tableClass }}" #wordsTable [nzData]="words" [nzLoading]="false" [nzHideOnSinglePage]="false" [nzFooter]="tableFooter" ngSkipHydration [nzScroll]="{ y: '100%' }">
+    <nz-table class="{{ tableClass }} table-with-footer" #wordsTable [nzData]="words" [nzLoading]="false" [nzHideOnSinglePage]="false" [nzPageSize]="20" [nzFooter]="tableFooter" ngSkipHydration [nzScroll]="{ y: '100%' }">
       <thead>
         <tr>
           <th nzWidth="100px">日语</th>
@@ -32,9 +32,9 @@
     </nz-table>
   </div>
   <ng-template #tableFooter>
-    <span>
-      请先
-      <a download="cn-jp-words.xlsx" href="assets/cn-jp-words.xlsx" class="text-emerald-500">下载模板文件</a>，修改后再转换。</span
-    ></ng-template
-  >
+    <span>请先</span>
+    <a download="cn-jp-words.xlsx" href="assets/cn-jp-words.xlsx" class="text-emerald-500 pl-2">下载模板文件</a>
+    <span>，修改后再转换。</span>
+    <button nz-button nzType="primary" nzSize="small">导出</button>
+  </ng-template>
 </div>

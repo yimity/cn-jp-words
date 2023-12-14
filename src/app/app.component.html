@@ -4,10 +4,10 @@
       <a routerLink="/">日中差异汉字词汇大全</a>
     </div>
     <ul nz-menu nzTheme="dark" nzMode="horizontal">
-      <li nz-menu-item>
+      <!--<li nz-menu-item>
         <a routerLink="/all" nz-button nzSize="small" nzType="link">全部列表</a>
-      </li>
-      <li nz-menu-item>
+      </li>-->
+      <li nz-menu-item [nzMatchRouter]="true">
         <a routerLink="/excel" nz-button nzSize="small" nzType="link">数据转换</a>
       </li>
     </ul>
@@ -15,5 +15,9 @@
   <nz-content class="flex-1">
     <router-outlet></router-outlet>
   </nz-content>
-  <nz-footer class="py-4 text-center">Ant Design ©2023 Implement By Angular</nz-footer>
+  <nz-footer class="py-4 text-center">
+    <a href="https://yimity.com/" target="_blank" class="text-emerald-500">请叫我一米</a>
+    <span class="px-2">©2023 感谢</span>
+    <a href="https://springwood.me/macos-dictionary-cn-jp-all-diff-words" class="text-emerald-500">沉舟侧畔的数据</a>
+  </nz-footer>
 </nz-layout>

@@ -8,6 +8,9 @@ import { SearchService, Word } from '../../service/search/search.service';
 import {NzMessageService} from "ng-zorro-antd/message";
 import {FormsModule} from "@angular/forms";
 import {RouterLink} from "@angular/router";
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { searchTypeList } from '../../consts/search';
+import { words } from '../../../../functions/api/words';
 
 @Component({
   selector: 'app-search',
@@ -20,6 +23,7 @@ import {RouterLink} from "@angular/router";
     NgForOf,
     FormsModule,
     RouterLink,
+    NzSelectModule,
   ],
   templateUrl: './search.component.html',
   styleUrl: './search.component.scss',
@@ -28,7 +32,14 @@ export class SearchComponent {
   keyword = '';
   loading = false;
 
-  words: Word[] = [];
+  selectedValue = '0';
+  searchTypeList = searchTypeList;
+
+  words: Word[] = words;
+
+  get tableClass(): string {
+    return this.words.length !== 0 ? 'full-height-table' : '';
+  }
 
   constructor(private searchService: SearchService, private message: NzMessageService) {}
 
@@ -47,31 +58,4 @@ export class SearchComponent {
       this.loading = false;
     });
   }
-
-  /*words: Word[] = [
-    {
-      japanese: '1',
-      hiragana: 'John Brown',
-      meanOfChinese: '32',
-      chinese: 'New York No. 1 Lake Park',
-      phonetic: 'New York No. 1 Lake Park',
-      chineseMeaning: 'New York No. 1 Lake Park',
-    },
-    {
-      japanese: '2',
-      hiragana: 'Jim Green',
-      meanOfChinese: '42',
-      chinese: 'London No. 1 Lake Park',
-      phonetic: 'London No. 1 Lake Park',
-      chineseMeaning: 'London No. 1 Lake Park',
-    },
-    {
-      japanese: '3',
-      hiragana: 'Joe Black',
-      meanOfChinese: '32',
-      chinese: 'Sidney No. 1 Lake Park',
-      phonetic: 'Sidney No. 1 Lake Park',
-      chineseMeaning: 'Sidney No. 1 Lake Park',
-    },
-  ];*/
 }
