@@ -12,6 +12,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { searchTypeList, typeColors } from '../../consts/search';
 import { words } from '../../../../functions/api/words';
 import { NzTagModule } from 'ng-zorro-antd/tag';
+import { copy } from '../../utils/utils';
 
 @Component({
   selector: 'app-search',
@@ -46,7 +47,7 @@ export class SearchComponent {
 
   constructor(private searchService: SearchService, private message: NzMessageService) {}
 
-  search(): void {
+  handleSearch(): void {
     if(this.loading){
       return;
     }
@@ -55,5 +56,20 @@ export class SearchComponent {
       this.words = result.data;
       this.loading = false;
     });
+  }
+
+  async handleCopy(word: Word) {
+    const text = `${word.japanese}, ${word.hiragana}, ${word.meanOfChinese}, ${word.chinese}, ${word.chineseMeaning}`;
+    try {
+      const result = await copy(text);
+      if (result) {
+        this.message.success("复制成功");
+      } else {
+        this.message.error("复制失败");
+      }
+    } catch (e) {
+      console.log(e);
+      this.message.error("复制失败");
+    }
   }
 }

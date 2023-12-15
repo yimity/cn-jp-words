@@ -10,7 +10,7 @@
       <input type="text" [(ngModel)]="keyword" nz-input placeholder="请输入日语单词" />
     </nz-input-group>
     <ng-template #suffixButton>
-      <button nz-button nzType="primary" nzSize="large" nzSearch (click)="search()">搜索</button>
+      <button nz-button nzType="primary" nzSize="large" nzSearch (click)="handleSearch()">搜索</button>
       <!--<a routerLink="/all" nz-button nzSize="small" nzType="link">全部列表</a>-->
     </ng-template>
   </div>
@@ -34,7 +34,7 @@
           <td>{{ data.chinese }}</td>
           <td>{{ data.chineseMeaning }}</td>
           <td>
-            <a>复制</a>
+            <a (click)="handleCopy(data)">复制</a>
           </td>
         </tr>
       </tbody>
