@@ -5,9 +5,9 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NgForOf } from '@angular/common';
 import { SearchService, Word, WordType } from '../../service/search/search.service';
-import {NzMessageService} from "ng-zorro-antd/message";
-import {FormsModule} from "@angular/forms";
-import {RouterLink} from "@angular/router";
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { searchTypeList, typeColors } from '../../consts/search';
 import { words } from '../../../../functions/api/words';
@@ -17,17 +17,7 @@ import { copy } from '../../utils/utils';
 @Component({
   selector: 'app-search',
   standalone: true,
-  imports: [
-    NzInputModule,
-    NzButtonModule,
-    NzTableModule,
-    NzDividerModule,
-    NgForOf,
-    FormsModule,
-    RouterLink,
-    NzSelectModule,
-    NzTagModule,
-  ],
+  imports: [NzInputModule, NzButtonModule, NzTableModule, NzDividerModule, NgForOf, FormsModule, RouterLink, NzSelectModule, NzTagModule],
   templateUrl: './search.component.html',
   styleUrl: './search.component.scss',
 })
@@ -45,10 +35,13 @@ export class SearchComponent {
     return this.words.length !== 0 ? 'full-height-table' : '';
   }
 
-  constructor(private searchService: SearchService, private message: NzMessageService) {}
+  constructor(
+    private searchService: SearchService,
+    private message: NzMessageService
+  ) {}
 
   handleSearch(): void {
-    if(this.loading){
+    if (this.loading) {
       return;
     }
     this.loading = true;
@@ -63,13 +56,13 @@ export class SearchComponent {
     try {
       const result = await copy(text);
       if (result) {
-        this.message.success("复制成功");
+        this.message.success('复制成功');
       } else {
-        this.message.error("复制失败");
+        this.message.error('复制失败');
       }
     } catch (e) {
       console.log(e);
-      this.message.error("复制失败");
+      this.message.error('复制失败');
     }
   }
 }
