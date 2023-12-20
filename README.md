@@ -3,7 +3,7 @@
 通过查询某些日语单词的中文意思，可以帮助我们更好的理解日语单词的意思。
 
 ## 项目来源
-资源文件来源于：https://springwood.me/macos-dictionary-cn-jp-all-diff-words/， 感谢原作者的分享。
+资源文件来源于：https://springwood.me/macos-dictionary-cn-jp-all-diff-words/ 感谢原作者的分享。
 
 ## 项目访问地址
 https://jp.yimity.com/
