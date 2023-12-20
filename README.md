@@ -9,7 +9,8 @@
 https://jp.yimity.com/
 
 ## 贡献
-请按照模板文件(https://jp.yimity.com/assets/cn-jp-words.xlsx)的格式增加新的词汇，或者修正已有词汇的错误。请标明是修正还是新增。
+请按照模板文件(https://jp.yimity.com/assets/cn-jp-words.xlsx) 的格式增加新的词汇，或者修正已有词汇的错误。请标明是修正还是新增。
 修正完成后，请使用 https://jp.yimity.com/excel 来确定可以解析正确的文件内容。
 发送 Pull Request 即可。我会尽快合并。
+项目基于 Angular 17 开发。
 
