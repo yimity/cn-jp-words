@@ -1,27 +1,15 @@
-# CnJpWords
+# 中日差异汉字词汇大全
+这个项目是一个中日差异汉字词汇大全，旨在帮助中文母语者学习日语。
+通过查询某些日语单词的中文意思，可以帮助我们更好的理解日语单词的意思。
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.5.
+## 项目来源
+资源文件来源于：https://springwood.me/macos-dictionary-cn-jp-all-diff-words/， 感谢原作者的分享。
 
-## Development server
+## 项目访问地址
+https://jp.yimity.com/
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 贡献
+请按照模板文件(https://jp.yimity.com/assets/cn-jp-words.xlsx)的格式增加新的词汇，或者修正已有词汇的错误。请标明是修正还是新增。
+修正完成后，请使用 https://jp.yimity.com/excel 来确定可以解析正确的文件内容。
+发送 Pull Request 即可。我会尽快合并。
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
